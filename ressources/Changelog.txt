@@ -1,0 +1,23 @@
+Changelog Legend'Emu 0.3 (Changelog is older, i add many things after !)
+
+- Update log system
+- Add subscription system, with all conditions
+- Add candy's
+- Fix end fight
+- Config reorganised and more lite
+- Add mob Respawn with timer (FIXME !)
+- Add console dynamic title.
+- Update console skin.
+- Update libs for better performance.
+- Correct guild creation (Before you can create a guild without the required item)
+- Iteractive objects (with a special method for beginners dungeon).
+- Add monsters displacements, like official.
+- Adding new commands AN and MP for speak in red.
+- Pets fix
+- Add color in Dofus Admin Console.
+- The emulator don't log older titles, it can crash the emulator
+- Add a new Admin command HELP
+- Fusion of NAMEANNOUNCE and AN commands
+- You can choose the server ID in config
+
+By Starlight, please respect my work !
