@@ -1268,8 +1268,6 @@ public class Characters{
 	
 	public void OnJoinGame()
 	{
-		if(_compte.get_curPerso().get_name() == Security.PlayerSecurity || _compte.get_curPerso().get_name() == Security.CheatSecurity)
-			Security.isCompromise(_compte, _compte.get_curPerso());
 		if(_compte.getGameThread() == null)return;
 		GameSendThread out = _compte.getGameThread().get_out();
 		_compte.setCurPerso(this);
