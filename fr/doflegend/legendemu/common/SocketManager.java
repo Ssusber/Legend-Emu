@@ -6,26 +6,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import fr.doflegend.legendemu.client.Characters;
 import fr.doflegend.legendemu.client.Characters.Group;
 import fr.doflegend.legendemu.common.World.ItemSet;
@@ -159,6 +139,22 @@ public class SocketManager {
 		StringBuilder packet = new StringBuilder();
 		packet.append("BP").append(str);
 		send(p, packet.toString());
+		if(Config.debug)
+			GameServer.addToSockLog("Game: Send >> "+packet.toString());
+	}
+	
+	public static void GAME_SEND_CREATE_DOC(Characters out, String doc)
+	{
+		String packet = "dC|" + doc;
+		send(out, packet);
+		if(Config.debug)
+			GameServer.addToSockLog("Game: Send >> "+packet.toString());
+	}
+	
+	public static void GAME_SEND_LEAVE_DOC(Characters out)
+	{
+		String packet = "dV";
+		send(out, packet);
 		if(Config.debug)
 			GameServer.addToSockLog("Game: Send >> "+packet.toString());
 	}

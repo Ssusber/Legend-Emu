@@ -45,6 +45,25 @@ public class Action {
 		fr.doflegend.legendemu.game.GameSendThread out = perso.get_compte().getGameThread().get_out();	
 		switch(ID)
 		{
+		case -22: // Remettre prisonnier
+			if(perso.get_followers() != "" && !perso.get_followers().isEmpty())
+			{
+				int skinFollower = Integer.parseInt(perso.get_followers());
+				int questId = Constant.getQuestByMobSkin(skinFollower);
+				GameServer.addToLog("associe a quete "  + questId);
+				if(questId != -1)
+				{
+					perso.upgradeQuest(questId);
+					perso.remove_follow();
+					int itemFollow = Constant.getItemByMobSkin(skinFollower);
+					perso.removeByTemplateID(itemFollow, 1);
+				}
+				//else
+					//SocketManager.GAME_SEND_MESSAGE(perso, "Vous n'avez aucun prisonnier a remettre !", "FF0000");
+			}
+			//else
+				//SocketManager.GAME_SEND_MESSAGE(perso, "Vous n'avez aucun prisonnier a remettre !", "FF0000");	
+		break;
 		case -2://créer guilde
 			if(perso.is_away())return;
 			if(perso.get_guild() != null || perso.getGuildMember() != null)

@@ -12,35 +12,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import fr.doflegend.legendemu.arena.Arena;
 import fr.doflegend.legendemu.arena.Kolizeum;
 import fr.doflegend.legendemu.arena.Team;
@@ -256,6 +227,10 @@ public class GameThread implements Runnable {
 			parseChanelPacket(packet);
 			break;
 			
+		case 'd':
+			parseDocPacket(packet);
+		break;
+			
 		case 'D':
 			parseDialogPacket(packet);
 			break;
@@ -378,6 +353,15 @@ public class GameThread implements Runnable {
 			else
 			    Houses.LockHouse(_perso, packet);
 		break;
+		}
+	}
+	public void parseDocPacket(String packet)
+	{
+		switch(packet.charAt(1))
+		{
+			case 'V':
+				SocketManager.GAME_SEND_LEAVE_DOC(_perso);
+			break;
 		}
 	}
 	private void ParseConquetePacket(String packet) {
@@ -4386,26 +4370,35 @@ public class GameThread implements Runnable {
 						_perso.set_orientation(CryptManager.getIntByHashedValue(path.charAt(path.length() - 3)));
 						_perso.get_curCell().addPerso(_perso);
                         if(!_perso._isGhosts) _perso.set_away(false);
-						if (targetCell.getObject() != null) {
-							//Si c'est une "borne" comme Emotes, ou Cr�ation guilde
-							if (targetCell.getObject().getID() == 1324) {
-								Constant.applyPlotIOAction(_perso, _perso.get_curCarte().get_id(), targetCell.getID());
+						if(targetCell.getObject() != null)
+						{
+							String docName;
+							//Si c'est une "borne" comme Emotes, ou Création guilde
+							if(targetCell.getObject().getID() == 1324)
+							{
+								Constant.applyPlotIOAction(_perso,_perso.get_curCarte().get_id(),targetCell.getID());
 							}
-                                                        //Statues phoenix
+							//Statues phoenix
 							else if(targetCell.getObject().getID() == 542)
 							{
 								if(_perso._isGhosts) _perso.set_Alive();
 							}
+							// Pancartes missions de recherches
+							else if((docName = Constant.getDocNameByBornePos(targetCell.getObject().getID(), targetCell.getID())) != "")
+							{
+								SocketManager.GAME_SEND_CREATE_DOC(_perso, docName);
+							}
 						}
-						_perso.get_curCarte().onPlayerArriveOnCell(_perso, _perso.get_curCell().getID());
-					} else//En combat
+						_perso.get_curCarte().onPlayerArriveOnCell(_perso,_perso.get_curCell().getID());
+					}
+					else//En combat
 					{
 						_perso.get_fight().onGK(_perso);
 						return;
 					}
-
-				} else {
-					//Si le joueur s'arrete sur une case
+					
+				}
+				else	{				//Si le joueur s'arrete sur une case
 					int newCellID = -1;
 					try {
 						newCellID = Integer.parseInt(infos[1]);
