@@ -137,7 +137,7 @@ public class Characters{
 	//Zaap
 	private boolean _isZaaping = false;
 	private ArrayList<Short> _zaaps = new ArrayList<Short>();
-	//Disponibilité
+	//Disponibilitï¿½
 	public boolean _isAbsent = false;
 	public boolean _isInvisible = false;
 	//Sort
@@ -151,7 +151,7 @@ public class Characters{
 	private int _isOnPercepteurID = 0;
 	//Titre
 	private byte _title = 0;
-	//Inactivité
+	//Inactivitï¿½
 	protected long _lastPacketTime;
 	//Mariage
 	private int _wife = 0;
@@ -395,14 +395,14 @@ public class Characters{
 			{
 				//Si la stat n'existe pas dans l'autre map
 				if(other.getMap().get(entry.getKey()) == null)return false;
-				//Si la stat existe mais n'a pas la même valeur
+				//Si la stat existe mais n'a pas la mï¿½me valeur
 				if(other.getMap().get(entry.getKey()) != entry.getValue())return false;	
 			}
 			for(Entry<Integer,Integer> entry : other.getMap().entrySet())
 			{
 				//Si la stat n'existe pas dans l'autre map
 				if(Effects.get(entry.getKey()) == null)return false;
-				//Si la stat existe mais n'a pas la même valeur
+				//Si la stat existe mais n'a pas la mï¿½me valeur
 				if(Effects.get(entry.getKey()) != entry.getValue())return false;	
 			}
 			return true;
@@ -634,7 +634,7 @@ public class Characters{
 			this._curCell = _curCarte.getCase(Config.CONFIG_START_CELL);
 		}else if (_curCarte == null && World.getCarte(Config.CONFIG_START_MAP) == null)
 		{
-			GameServer.addToLog("Personnage mal positione, et position de départ non valide. Fermeture du serveur.");
+			GameServer.addToLog("Personnage mal positione, et position de dï¿½part non valide. Fermeture du serveur.");
 			System.exit(0);
 		}
 		else if(_curCarte != null)
@@ -655,8 +655,8 @@ public class Characters{
 		}
 		if(_curCarte == null || _curCell == null)
 		{
-			GameServer.addToLog("Map ou case de départ du personnage "+_name+" invalide");
-			GameServer.addToLog("Map ou case par défaut invalide");
+			GameServer.addToLog("Map ou case de dï¿½part du personnage "+_name+" invalide");
+			GameServer.addToLog("Map ou case par dï¿½faut invalide");
 			GameServer.addToLog("Le serveur ne peut se lancer");
 			try {
 				Thread.sleep(10000);
@@ -718,7 +718,7 @@ public class Characters{
 		
 		_exPdv = _PDV;
 		
-		//Chargement des métiers
+		//Chargement des mï¿½tiers
 		if(!jobs.equals(""))
 		{
 			for(String aJobData : jobs.split(";"))
@@ -782,7 +782,7 @@ public class Characters{
 		if(_curCarte == null)return;
 		//Pas de regen en combat
 		if(_fight != null)return;
-		//Déjà Full PDV
+		//Dï¿½jï¿½ Full PDV
 		if(_PDV == _PDVMAX)return;
 		_PDV++;
 	}
@@ -1287,7 +1287,7 @@ public class Characters{
 			SocketManager.GAME_SEND_OS_PACKET(this, a);
 		}
 		
-		//envoie des données de métier
+		//envoie des donnï¿½es de mï¿½tier
 		if(_metiers.size() >0)
 		{
 			ArrayList<StatsMetier> list = new ArrayList<StatsMetier>();
@@ -1306,9 +1306,9 @@ public class Characters{
 						SocketManager.GAME_SEND_OT_PACKET(_compte.getGameThread().get_out(),sm.getTemplate().getId());
 			}
 		}
-		//Fin métier
+		//Fin mï¿½tier
 		SocketManager.GAME_SEND_ALIGNEMENT(out, _align);
-		SocketManager.GAME_SEND_ADD_CANAL(out,_canaux+"^"+(_compte.get_gmLvl()>0?"@¤":""));
+		SocketManager.GAME_SEND_ADD_CANAL(out,_canaux+"^"+(_compte.get_gmLvl()>0?"@ï¿½":""));
 		if(_guildMember != null)SocketManager.GAME_SEND_gS_PACKET(this,_guildMember);
 		SocketManager.GAME_SEND_ZONE_ALLIGN_STATUT(out);
 		SocketManager.GAME_SEND_SPELL_LIST(this);
@@ -1349,7 +1349,7 @@ public class Characters{
 		//Actualisation dans la DB
 		SQLManager.UPDATE_LASTCONNECTION_INFO(_compte);
 		
-		if(!Config.CONFIG_MOTD.equals(""))//Si le motd est notifié
+		if(!Config.CONFIG_MOTD.equals(""))//Si le motd est notifiï¿½
 		{
 			String color = Config.CONFIG_MOTD_COLOR;
 			if(color.equals(""))color = "000000";//Noir
@@ -1359,15 +1359,15 @@ public class Characters{
 		
 		if(_fight == null)
 		{
-			//on démarre le Timer pour la Regen de Pdv
+			//on dï¿½marre le Timer pour la Regen de Pdv
 			_sitTimer.start();
-			//on le demarre coté org.walaka.rubrumsolem.client
+			//on le demarre cotï¿½ org.walaka.rubrumsolem.client
 			SocketManager.GAME_SEND_ILS_PACKET(this, 2000);
 		}
 		SQLManager.LOAD_PERSO_PACKS(this);
 		Stalk.notifyToOwner(this, Stalk.CONNEXION);
 		
-		if(get_compte().get_subscriber() == 0 && Config.USE_SUBSCRIBE)//Non abonné
+		if(get_compte().get_subscriber() == 0 && Config.USE_SUBSCRIBE)//Non abonnï¿½
 		{
 			if(_curCarte.getSubArea().get_subscribe())//Se connecte dans une zone abo
 			{
@@ -1449,7 +1449,7 @@ public class Characters{
 			str.append((_showWings?getGrade():"0")).append(",");
 			str.append(_lvl+_GUID);
 			if(_showWings && _deshonor > 0) str.append(",1");
-			str.append(";"); //Ne pas me demander qui est l'imbécile qui a eu la brillante idée d'ajouter l'ID...
+			str.append(";"); //Ne pas me demander qui est l'imbï¿½cile qui a eu la brillante idï¿½e d'ajouter l'ID...
 			str.append((_color1==-1?"-1":Integer.toHexString(_color1))).append(";");
 			str.append((_color2==-1?"-1":Integer.toHexString(_color2))).append(";");
 			str.append((_color3==-1?"-1":Integer.toHexString(_color3))).append(";");
@@ -1644,7 +1644,7 @@ public class Characters{
 			{
 				stats = Stats.cumulStat(stats,entry.getValue().getStats());
 				int panID = entry.getValue().getTemplate().getPanopID();
-				//Si panoplie, et si l'effet de pano n'a pas encore été ajouté
+				//Si panoplie, et si l'effet de pano n'a pas encore ï¿½tï¿½ ajoutï¿½
 				if(panID>0 && !itemSetApplied.contains(panID))
 				{
 					itemSetApplied.add(panID);
@@ -1848,12 +1848,12 @@ public class Characters{
 		if(_isOnline)
 		{//On envoie le message "Vous avez recuperer X pdv"
 		SocketManager.GAME_SEND_ILF_PACKET(this, diff);
-		//On envoie la modif du Timer de regenPdv coté org.walaka.rubrumsolem.client
+		//On envoie la modif du Timer de regenPdv cotï¿½ org.walaka.rubrumsolem.client
 		SocketManager.GAME_SEND_ILS_PACKET(this, time);
 		}
-		//on modifie le delay coté Serveur du timer de regenPDV
+		//on modifie le delay cotï¿½ Serveur du timer de regenPDV
 		_sitTimer.setDelay(time);
-		//Si on se leve, on desactive l'émote
+		//Si on se leve, on desactive l'ï¿½mote
 		if((_emoteActive == 1 || _emoteActive == 19) && b == false)_emoteActive = 0;
 	}
 
@@ -1943,7 +1943,7 @@ public class Characters{
 			case 13://Chance
 				value = _baseStats.getEffect(Constant.STATS_ADD_CHAN);
 			break;
-			case 14://Agilité
+			case 14://Agilitï¿½
 				value = _baseStats.getEffect(Constant.STATS_ADD_AGIL);
 			break;
 			case 15://Intelligence
@@ -1970,7 +1970,7 @@ public class Characters{
 				case 13://Chance
 					_baseStats.addOneStat(Constant.STATS_ADD_CHAN, 1);
 				break;
-				case 14://Agilité
+				case 14://Agilitï¿½
 					_baseStats.addOneStat(Constant.STATS_ADD_AGIL, 1);
 				break;
 				case 15://Intelligence
@@ -2016,9 +2016,9 @@ public class Characters{
 				&& stackIfSimilar
 				&& newObj.getTemplate().getType() != 85
 				&& obj.getPosition() == Constant.ITEM_POS_NO_EQUIPED
-				&& newObj.getTemplate().getType() != Constant.ITEM_TYPE_FAMILIER)//Si meme Template et Memes Stats et Objet non équipé
+				&& newObj.getTemplate().getType() != Constant.ITEM_TYPE_FAMILIER)//Si meme Template et Memes Stats et Objet non ï¿½quipï¿½
 			{
-				obj.setQuantity(obj.getQuantity()+newObj.getQuantity());//On ajoute QUA item a la quantité de l'objet existant
+				obj.setQuantity(obj.getQuantity()+newObj.getQuantity());//On ajoute QUA item a la quantitï¿½ de l'objet existant
 				SQLManager.SAVE_ITEM(obj);
 				if(_isOnline)SocketManager.GAME_SEND_OBJECT_QUANTITY_PACKET(this,obj);
 				return false;
@@ -2148,7 +2148,7 @@ public class Characters{
 				_items.remove(obj.getGuid());
 				if(deleteFromWorld)
 					World.removeItem(obj.getGuid());
-				//on envoie le packet si connecté
+				//on envoie le packet si connectï¿½
 				if(send && _isOnline)
 					SocketManager.GAME_SEND_REMOVE_ITEM_PACKET(this, obj.getGuid());
 			}
@@ -2222,7 +2222,7 @@ public class Characters{
 		_curExp += winxp;
 		int exLevel = _lvl;
 		while(_curExp >= World.getPersoXpMax(_lvl) && _lvl<World.getExpLevelSize())
-			levelUp(true,false);
+			levelUp(false,false);/** @TODO Fix Generes uniquement une fentre au dernier lv gagnÃ© pour eviter un crash clientnier**/
 		if(_isOnline)
 		{
 			if(exLevel < _lvl)SocketManager.GAME_SEND_NEW_LVL_PACKET(_compte.getGameThread().get_out(),_lvl);
@@ -2265,11 +2265,11 @@ public class Characters{
 	{
 		for(Entry<Integer,StatsMetier> entry : _metiers.entrySet())
 		{
-			if(entry.getValue().getTemplate().getId() == m.getId())//Si le joueur a déjà le métier
+			if(entry.getValue().getTemplate().getId() == m.getId())//Si le joueur a dï¿½jï¿½ le mï¿½tier
 				return -1;
 		}
 		int Msize = _metiers.size();
-		if(Msize == 6)//Si le joueur a déjà 6 métiers
+		if(Msize == 6)//Si le joueur a dï¿½jï¿½ 6 mï¿½tiers
 			return -1;
 		int pos = 0;
 		if(Constant.isMageJob(m.getId()))
@@ -2285,10 +2285,10 @@ public class Characters{
 		}
 		
 		StatsMetier sm = new StatsMetier(pos,m,1,0);
-		_metiers.put(pos, sm);//On apprend le métier lvl 1 avec 0 xp
+		_metiers.put(pos, sm);//On apprend le mï¿½tier lvl 1 avec 0 xp
 		if(_isOnline)
 		{
-			//on créer la listes des statsMetier a envoyer (Seulement celle ci)
+			//on crï¿½er la listes des statsMetier a envoyer (Seulement celle ci)
 			ArrayList<StatsMetier> list = new ArrayList<StatsMetier>();
 			list.add(sm);
 			
@@ -2362,9 +2362,9 @@ public class Characters{
 		int nb = 0;
 		for(Entry<Integer, Objects> i : _items.entrySet())
 		{
-			//On ignore les objets non équipés
+			//On ignore les objets non ï¿½quipï¿½s
 			if(i.getValue().getPosition() == Constant.ITEM_POS_NO_EQUIPED)continue;
-			//On prend que les items de la pano demandée, puis on augmente le nombre si besoin
+			//On prend que les items de la pano demandï¿½e, puis on augmente le nombre si besoin
 			if(i.getValue().getTemplate().getPanopID() == panID)nb++;
 		}
 		return nb;
@@ -2425,7 +2425,7 @@ public class Characters{
 		_curCell = _curCarte.getCase(newCellID);
 		
 		//Verification de la carte
-		//Verifier la validité du mountpark
+		//Verifier la validitï¿½ du mountpark
 		if(_curCarte.getMountPark() != null && _curCarte.getMountPark().get_owner() > 0 && _curCarte.getMountPark().get_guild().get_id() != -1)
 		{
 			if(World.getGuild(_curCarte.getMountPark().get_guild().get_id()) == null)//Ne devrait pas arriver
@@ -2434,7 +2434,7 @@ public class Characters{
 				Maps.MountPark.removeMountPark(_curCarte.getMountPark().get_guild().get_id());
 			}
 		}
-		//Verifier la validité du percepteur
+		//Verifier la validitï¿½ du percepteur
 		if(Collector.GetPercoByMapID(_curCarte.get_id()) != null)
 		{
 			if(World.getGuild(Collector.GetPercoByMapID(_curCarte.get_id()).get_guildID()) == null)//Ne devrait pas arriver
@@ -2468,7 +2468,7 @@ public class Characters{
 				}
 			}
 			if (get_compte().get_subscriber() == 0 && _curCarte.getSubArea().get_subscribe() && get_compte().get_subscriberMessage() && Config.USE_SUBSCRIBE) {
-			SocketManager.GAME_SEND_SUBSCRIBE_MESSAGE(this, "+10"); // Si le joueur pénetre dans une zone abo, on envoie le cadenas
+			SocketManager.GAME_SEND_SUBSCRIBE_MESSAGE(this, "+10"); // Si le joueur pï¿½netre dans une zone abo, on envoie le cadenas
 			get_compte().set_subscriberMessage(false);
 						}
 					else {
@@ -2543,11 +2543,11 @@ public class Characters{
 		//Si le joueur n'a pas l'item dans son sac ...
 		if(_items.get(guid) == null)
 		{
-			GameServer.addToLog("Le joueur "+_name+" a tenté d'ajouter un objet en banque qu'il n'avait pas.");
+			GameServer.addToLog("Le joueur "+_name+" a tentï¿½ d'ajouter un objet en banque qu'il n'avait pas.");
 			return;
 		}
 		if (_items.get(guid).getQuantity() >= qua){
-			//Si c'est un item équipé ...
+			//Si c'est un item ï¿½quipï¿½ ...
 			if(PersoObj.getPosition() != Constant.ITEM_POS_NO_EQUIPED)return;
 			
 			Objects BankObj = getSimilarBankItem(PersoObj);
@@ -2559,7 +2559,7 @@ public class Characters{
 				{
 					//On enleve l'objet du sac du joueur
 					removeItem(PersoObj.getGuid());
-					//On met l'objet du sac dans la banque, avec la meme quantité
+					//On met l'objet du sac dans la banque, avec la meme quantitï¿½
 					_compte.getBank().put(PersoObj.getGuid(), PersoObj);
 					String str = "O+"+PersoObj.getGuid()+"|"+PersoObj.getQuantity()+"|"+PersoObj.getTemplate().getID()+"|"+PersoObj.parseStatsString();
 					SocketManager.GAME_SEND_EsK_PACKET(this, str);
@@ -2568,7 +2568,7 @@ public class Characters{
 				}
 				else//S'il reste des objets au joueur
 				{
-					//on modifie la quantité d'item du sac
+					//on modifie la quantitï¿½ d'item du sac
 					PersoObj.setQuantity(newQua);
 					//On ajoute l'objet a la banque et au monde
 					BankObj = Objects.getCloneObjet(PersoObj, qua);
@@ -2590,7 +2590,7 @@ public class Characters{
 					removeItem(PersoObj.getGuid());
 					//On enleve l'objet du monde
 					World.removeItem(PersoObj.getGuid());
-					//On ajoute la quantité a l'objet en banque
+					//On ajoute la quantitï¿½ a l'objet en banque
 					BankObj.setQuantity(BankObj.getQuantity() + PersoObj.getQuantity());
 					//on envoie l'ajout a la banque de l'objet
 					String str = "O+"+BankObj.getGuid()+"|"+BankObj.getQuantity()+"|"+BankObj.getTemplate().getID()+"|"+BankObj.parseStatsString();
@@ -2600,7 +2600,7 @@ public class Characters{
 					
 				}else //S'il restait des objets
 				{
-					//on modifie la quantité d'item du sac
+					//on modifie la quantitï¿½ d'item du sac
 					PersoObj.setQuantity(newQua);
 					BankObj.setQuantity(BankObj.getQuantity() + qua);
 					String str = "O+"+BankObj.getGuid()+"|"+BankObj.getQuantity()+"|"+BankObj.getTemplate().getID()+"|"+BankObj.parseStatsString();
@@ -2659,7 +2659,7 @@ public class Characters{
 					
 				}else //S'il reste des objets en banque
 				{
-					//On crée une copy de l'item en banque
+					//On crï¿½e une copy de l'item en banque
 					PersoObj = Objects.getCloneObjet(BankObj, qua);
 					//On l'ajoute au monde
 					World.addObjet(PersoObj, true);
@@ -2683,7 +2683,7 @@ public class Characters{
 					//On retire l'item de la banque
 					_compte.getBank().remove(BankObj.getGuid());
 					World.removeItem(BankObj.getGuid());
-					//On Modifie la quantité de l'item du sac du joueur
+					//On Modifie la quantitï¿½ de l'item du sac du joueur
 					PersoObj.setQuantity(PersoObj.getQuantity() + BankObj.getQuantity());
 					
 					//On envoie les packets
@@ -2793,7 +2793,7 @@ public class Characters{
 					//on supprime de l'inventaire et du Monde
 					_items.remove(obj.getGuid());
 					World.removeItem(obj.getGuid());
-					//on envoie le packet si connecté
+					//on envoie le packet si connectï¿½
 					if(_isOnline)
 						SocketManager.GAME_SEND_REMOVE_ITEM_PACKET(this, obj.getGuid());
 				}
@@ -2817,13 +2817,13 @@ public class Characters{
 						//on supprime de l'inventaire et du Monde
 						_items.remove(o.getGuid());
 						World.removeItem(o.getGuid());
-						//on envoie le packet si connecté
+						//on envoie le packet si connectï¿½
 						if(_isOnline)
 							SocketManager.GAME_SEND_REMOVE_ITEM_PACKET(this, o.getGuid());
 					}
 				}else
 				{
-					// on réduit le compteur
+					// on rï¿½duit le compteur
 					tempCount -= obj.getQuantity();
 					remove.add(obj);
 				}
@@ -2867,7 +2867,7 @@ public class Characters{
 
 		for(StatsMetier SM : _metiers.values())
 		{
-			// Si c'est un métier 'basic' :
+			// Si c'est un mï¿½tier 'basic' :
 			if(SM.getTemplate().getId() == 	2 || SM.getTemplate().getId() == 11 ||
 			   SM.getTemplate().getId() == 13 || SM.getTemplate().getId() == 14 ||
 			   SM.getTemplate().getId() == 15 || SM.getTemplate().getId() == 16 ||
@@ -2892,7 +2892,7 @@ public class Characters{
 
 		for(StatsMetier SM : _metiers.values())
 		{
-			// Si c'est une spécialisation 'FM' :
+			// Si c'est une spï¿½cialisation 'FM' :
 			if(SM.getTemplate().getId() == 	43 || SM.getTemplate().getId() == 44 ||
 			   SM.getTemplate().getId() == 45 || SM.getTemplate().getId() == 46 ||
 			   SM.getTemplate().getId() == 47 || SM.getTemplate().getId() == 48 ||
@@ -3270,7 +3270,7 @@ public class Characters{
 			if (CarteID == _curCarte.get_id())
 				costo = 0;
 			if (_kamas < costo) {
-				SocketManager.GAME_SEND_MESSAGE(this, "Vous n'avez pas sufisamment de Kamas pour réaliser cette action.",Config.CONFIG_MOTD_COLOR);
+				SocketManager.GAME_SEND_MESSAGE(this, "Vous n'avez pas sufisamment de Kamas pour rï¿½aliser cette action.",Config.CONFIG_MOTD_COLOR);
 				return;
 			}
 			_kamas -= costo;
@@ -3282,9 +3282,9 @@ public class Characters{
 	{
 		if(!_isZaaping)return;//S'il n'a pas ouvert l'interface Zaap(hack?)
 		if(_fight != null) return;//Si il combat
-		if(!hasZaap(id))return;//S'il n'a pas le zaap demandé(ne devrais pas arriver)
+		if(!hasZaap(id))return;//S'il n'a pas le zaap demandï¿½(ne devrais pas arriver)
 		int cost = Formulas.calculZaapCost(_curCarte, World.getCarte(id));
-		if(_kamas < cost)return;//S'il n'a pas les kamas (verif coté org.walaka.rubrumsolem.client)
+		if(_kamas < cost)return;//S'il n'a pas les kamas (verif cotï¿½ org.walaka.rubrumsolem.client)
 		short mapID = id;
 		int SubAreaID = _curCarte.getSubArea().getArea().getSuperArea().getID();
 		int cellID = World.getZaapCellIdByMapId(id);
@@ -3938,11 +3938,11 @@ public class Characters{
 		}
 		if (_items.get(ObjID).getQuantity() < qua)
 		{
-			GameServer.addToLog("Le joueur "+_name+" a tenté d'ajouter une quantité d'objet en banque dont il ne possédait pas.");
-			SocketManager.GAME_SEND_MESSAGE(this, "Alors petit rigolo, ça marche plus ?", Config.CONFIG_MOTD_COLOR);
+			GameServer.addToLog("Le joueur "+_name+" a tentï¿½ d'ajouter une quantitï¿½ d'objet en banque dont il ne possï¿½dait pas.");
+			SocketManager.GAME_SEND_MESSAGE(this, "Alors petit rigolo, ï¿½a marche plus ?", Config.CONFIG_MOTD_COLOR);
 			return;
 		}
-		//Si c'est un item équipé ...
+		//Si c'est un item ï¿½quipï¿½ ...
 		if(PersoObj.getPosition() != Constant.ITEM_POS_NO_EQUIPED)return;
 		
 		Objects SimilarObj = getSimilarStoreItem(PersoObj);
@@ -3954,14 +3954,14 @@ public class Characters{
 			{
 				//On enleve l'objet du sac du joueur
 				removeItem(PersoObj.getGuid());
-				//On met l'objet du sac dans le store, avec la meme quantité
+				//On met l'objet du sac dans le store, avec la meme quantitï¿½
 				_storeItems.put(PersoObj.getGuid(), price);
 				SocketManager.GAME_SEND_REMOVE_ITEM_PACKET(this, PersoObj.getGuid());
                 SocketManager.GAME_SEND_ITEM_LIST_PACKET_SELLER(this, this);
 			}
 			else//S'il reste des objets au joueur
 			{
-				//on modifie la quantité d'item du sac
+				//on modifie la quantitï¿½ d'item du sac
 				PersoObj.setQuantity(newQua);
 				//On ajoute l'objet a la banque et au monde
 				SimilarObj = Objects.getCloneObjet(PersoObj, qua);
@@ -3982,7 +3982,7 @@ public class Characters{
 				removeItem(PersoObj.getGuid());
 				//On enleve l'objet du monde
 				World.removeItem(PersoObj.getGuid());
-				//On ajoute la quantité a l'objet en banque
+				//On ajoute la quantitï¿½ a l'objet en banque
 				SimilarObj.setQuantity(SimilarObj.getQuantity() + PersoObj.getQuantity());
 				_storeItems.remove(SimilarObj.getGuid());
 				_storeItems.put(SimilarObj.getGuid(), price);
@@ -3992,7 +3992,7 @@ public class Characters{
 				SocketManager.GAME_SEND_REMOVE_ITEM_PACKET(this, PersoObj.getGuid());
 			}else //S'il restait des objets
 			{
-				//on modifie la quantité d'item du sac
+				//on modifie la quantitï¿½ d'item du sac
 				PersoObj.setQuantity(newQua);
 				SimilarObj.setQuantity(SimilarObj.getQuantity() + qua);
 				_storeItems.remove(SimilarObj.getGuid());
@@ -4057,7 +4057,7 @@ public class Characters{
 				//On retire l'item de la banque
 				_storeItems.remove(SimilarObj.getGuid());
 				World.removeItem(SimilarObj.getGuid());
-				//On Modifie la quantité de l'item du sac du joueur
+				//On Modifie la quantitï¿½ de l'item du sac du joueur
 				PersoObj.setQuantity(PersoObj.getQuantity() + SimilarObj.getQuantity());
 				
 				//On envoie les packets
@@ -4096,14 +4096,14 @@ public class Characters{
 	public void set_savestat(int stat){
 	this.savestat = stat;
 	}
-	public void RejoindeWife(Characters p) // Correcion téléportation mariage par Taparisse
+	public void RejoindeWife(Characters p) // Correcion tï¿½lï¿½portation mariage par Taparisse
     {
         if(p == null)
         {
             return;
         }
         int dist = (_curCarte.getX() - p.get_curCarte().getX()) * (_curCarte.getX() - p.get_curCarte().getX()) + (_curCarte.getY() - p.get_curCarte().getY()) * (_curCarte.getY() - p.get_curCarte().getY());
-        if(dist > 10) // Distance max acceptée entre les deux amours.
+        if(dist > 10) // Distance max acceptï¿½e entre les deux amours.
         {
             SocketManager.GAME_SEND_MESSAGE(this, "Vous etes trop loin de votre amour. Impossible de vous y teleporter.", Config.CONFIG_MOTD_COLOR);
             return;
@@ -4598,7 +4598,7 @@ public class Characters{
 	}
 	public void DeconnexionCombat()
 	{
-		//Quand tous les tours sont passés, bah on dois déconnecter le gars
+		//Quand tous les tours sont passï¿½s, bah on dois dï¿½connecter le gars
 		if(get_curExchange() != null)get_curExchange().cancel();
 		//Si en groupe
 		if(getGroup() != null)getGroup().leave(this);
@@ -4629,7 +4629,7 @@ public class Characters{
 				obj = entry.getValue();
 				if(obj.getPosition() == Constant.ITEM_POS_NO_EQUIPED) continue;
 				if(!obj.getTemplate().getConditions().equalsIgnoreCase("") && !ConditionParser.validConditions(this,obj.getTemplate().getConditions())) {
-					// si le perso ne vérifie pas les conditions diverses
+					// si le perso ne vï¿½rifie pas les conditions diverses
 					this.DesequiperItem(obj);
 					deseq=true;
 					nb++;
@@ -4651,7 +4651,7 @@ public class Characters{
     		SocketManager.GAME_SEND_SB_PACKET(this, item.getBoostSpellStats(), false);
     	}
 		Objects obj2;
-		if((obj2 = getSimilarItem(item)) != null)//On le possède deja
+		if((obj2 = getSimilarItem(item)) != null)//On le possï¿½de deja
 		{
 			obj2.setQuantity(obj2.getQuantity()+item.getQuantity());
 			SocketManager.GAME_SEND_OBJECT_QUANTITY_PACKET(this, obj2);
@@ -4659,7 +4659,7 @@ public class Characters{
 			removeItem(item.getGuid());
 			SocketManager.GAME_SEND_REMOVE_ITEM_PACKET(this, item.getGuid());
 		}
-		else//On ne le possède pas
+		else//On ne le possï¿½de pas
 		{
 			item.setPosition(Constant.ITEM_POS_NO_EQUIPED);
 			SocketManager.GAME_SEND_OBJET_MOVE_PACKET(this,item);
@@ -4697,9 +4697,9 @@ public class Characters{
 				&& obj.getStats().isSameStats(newObj.getStats())
 				&& stackIfSimilar
 				&& newObj.getTemplate().getType() != 85
-				&& obj.getPosition() == Constant.ITEM_POS_NO_EQUIPED)//Si meme Template et Memes Stats et Objet non équipé
+				&& obj.getPosition() == Constant.ITEM_POS_NO_EQUIPED)//Si meme Template et Memes Stats et Objet non ï¿½quipï¿½
 			{
-				obj.setQuantity(obj.getQuantity()+newObj.getQuantity());//On ajoute QUA item a la quantité de l'objet existant
+				obj.setQuantity(obj.getQuantity()+newObj.getQuantity());//On ajoute QUA item a la quantitï¿½ de l'objet existant
 				SQLManager.SAVE_ITEM(obj);
 				Utils.addToShopLogs(_perso, templateID, quantity, price, obj.getGuid());
 				if(_isOnline)SocketManager.GAME_SEND_OBJECT_QUANTITY_PACKET(this,obj);
