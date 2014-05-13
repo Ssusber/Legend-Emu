@@ -91,7 +91,7 @@ public class World {
 	public static Map<Integer,StatsMetier> upT = new TreeMap<Integer,StatsMetier>();
 	public static Map<Integer,StatsMetier> upP = new TreeMap<Integer,StatsMetier>();
 	public static Map<Integer,StatsMetier> upFH = new TreeMap<Integer,StatsMetier>();
-	public static Map<Integer,StatsMetier> upFPc = new TreeMap<Integer,StatsMetier>(); // Pêcheurman... 42.. Sydney... avenue Walaby
+	public static Map<Integer,StatsMetier> upFPc = new TreeMap<Integer,StatsMetier>(); // Pï¿½cheurman... 42.. Sydney... avenue Walaby
 	public static Map<Integer,StatsMetier> upC = new TreeMap<Integer,StatsMetier>();//Chasseurs
 	public static Map<Integer,StatsMetier> upFMD = new TreeMap<Integer,StatsMetier>();
 	public static Map<Integer,StatsMetier> upFME = new TreeMap<Integer,StatsMetier>();
@@ -112,8 +112,8 @@ public class World {
 	private static java.util.Map<String, java.util.Map<String, String>> mobGroupFix = new HashMap<String, java.util.Map<String, String>>();
 	
 	 
-	private static int nextHdvID;	//Contient le derniere ID utilisé pour crée un HDV, pour obtenir un ID non utilisé il faut impérativement l'incrémenter
-	private static int nextLigneID;	//Contient le derniere ID utilisé pour crée une ligne dans un HDV
+	private static int nextHdvID;	//Contient le derniere ID utilisï¿½ pour crï¿½e un HDV, pour obtenir un ID non utilisï¿½ il faut impï¿½rativement l'incrï¿½menter
+	private static int nextLigneID;	//Contient le derniere ID utilisï¿½ pour crï¿½e une ligne dans un HDV
 	
 	private static int saveTry = 1;
 	//Statut du serveur 1: accesible; 0: inaccesible; 2: sauvegarde
@@ -121,7 +121,7 @@ public class World {
 	
 	private static byte _GmAccess = 0;
 	
-	private static int nextObjetID; //Contient le derniere ID utilisé pour crée un Objet
+	private static int nextObjetID; //Contient le derniere ID utilisï¿½ pour crï¿½e un Objet
 	
 	//Quest
 	private static Map<Integer, Map<String, String>> quests = new HashMap<Integer, Map<String, String>>();
@@ -190,7 +190,7 @@ public class World {
 			for(String str : bonuses.split(";"))
 			{
 				Stats S = new Stats();
-				//séparation des bonus pour un même nombre d'item
+				//sï¿½paration des bonus pour un mï¿½me nombre d'item
 				for(String str2 : str.split(","))
 				{
 					try
@@ -579,11 +579,11 @@ public class World {
 				if(couple.second == 0)continue;
 				if(!perso1.hasItemGuid(couple.first))//Si le perso n'a pas l'item (Ne devrait pas arriver)
 				{
-					couple.second = 0;//On met la quantité a 0 pour éviter les problemes
+					couple.second = 0;//On met la quantitï¿½ a 0 pour ï¿½viter les problemes
 					continue;
 				}	
 				Objects obj = World.getObjet(couple.first);
-				if((obj.getQuantity() - couple.second) <1)//S'il ne reste plus d'item apres l'échange
+				if((obj.getQuantity() - couple.second) <1)//S'il ne reste plus d'item apres l'ï¿½change
 				{
 					perso1.removeItem(couple.first);
 					couple.second = obj.getQuantity();
@@ -604,11 +604,11 @@ public class World {
 				if(couple.second == 0)continue;
 				if(!perso2.hasItemGuid(couple.first))//Si le perso n'a pas l'item (Ne devrait pas arriver)
 				{
-					couple.second = 0;//On met la quantité a 0 pour éviter les problemes
+					couple.second = 0;//On met la quantitï¿½ a 0 pour ï¿½viter les problemes
 					continue;
 				}	
 				Objects obj = World.getObjet(couple.first);
-				if((obj.getQuantity() - couple.second) <1)//S'il ne reste plus d'item apres l'échange
+				if((obj.getQuantity() - couple.second) <1)//S'il ne reste plus d'item apres l'ï¿½change
 				{
 					perso2.removeItem(couple.first);
 					couple.second = obj.getQuantity();
@@ -982,19 +982,19 @@ public class World {
 				toReturn.append(";");
 			isGood = true;
 			cond = Integer.parseInt(chal.split(",")[4]);
-			//Nécessite plusieurs ennemis
+			//Nï¿½cessite plusieurs ennemis
 			if(((cond & 1) == 1) && !sevEnn)
 				isGood = false;
-			//Nécessite plusieurs alliés
+			//Nï¿½cessite plusieurs alliï¿½s
 			if((((cond>>1) & 1) == 1) && !sevAll)
 				isGood = false;
-			//Nécessite les deux sexes
+			//Nï¿½cessite les deux sexes
 			if((((cond>>2) & 1) == 1) && !sevAll)
 				isGood = false;
-			// Nécessite un nombre pair d'ennemis
+			// Nï¿½cessite un nombre pair d'ennemis
 			if((((cond>>3) & 1) == 1) && !sevAll)
 				isGood = false;
-			// Nécessite plus d'ennemis que d'alliés
+			// Nï¿½cessite plus d'ennemis que d'alliï¿½s
 			if((((cond>>4) & 1) == 1) && !sevAll)
 				isGood = false;
 			// Jardinier
@@ -1021,15 +1021,15 @@ public class World {
 	
 	public static ArrayList<String> getRandomChallenge(int nombreChal, String challenges)
 	{
-		String MovingChals = ";1;2;8;36;37;39;40;"; // Challenges de déplacements incompatibles
+		String MovingChals = ";1;2;8;36;37;39;40;"; // Challenges de dï¿½placements incompatibles
 		boolean hasMovingChal = false;
 		String TargetChals = ";3;4;10;25;31;32;34;35;38;42;"; // ceux qui ciblent
 		boolean hasTargetChal = false;
-		String SpellChals = ";5;6;9;11;19;20;24;41;"; // ceux qui obligent à caster spécialement
+		String SpellChals = ";5;6;9;11;19;20;24;41;"; // ceux qui obligent ï¿½ caster spï¿½cialement
 		boolean hasSpellChal = false;
 		String KillerChals = ";28;29;30;44;45;46;48;"; // ceux qui disent qui doit tuer
 		boolean hasKillerChal = false;
-		String HealChals = ";18;43;"; // ceux qui empêchent de soigner
+		String HealChals = ";18;43;"; // ceux qui empï¿½chent de soigner
 		boolean hasHealChal = false;
 		
 		int compteur = 0, i = 0;
@@ -1041,9 +1041,9 @@ public class World {
 			i = Formulas.getRandomValue(1, challenges.split(";").length);
 			chal = challenges.split(";")[i-1]; // challenge au hasard dans la liste
 			
-			if(!toReturn.contains(chal)) {// si le challenge n'y était pas encore
-				if(MovingChals.contains(";"+chal.split(",")[0]+";")) // s'il appartient à une liste 
-					if(!hasMovingChal) { // et qu'aucun de la liste n'a été choisi déjà
+			if(!toReturn.contains(chal)) {// si le challenge n'y ï¿½tait pas encore
+				if(MovingChals.contains(";"+chal.split(",")[0]+";")) // s'il appartient ï¿½ une liste 
+					if(!hasMovingChal) { // et qu'aucun de la liste n'a ï¿½tï¿½ choisi dï¿½jï¿½
 						hasMovingChal = true;
 						toReturn.add(chal);
 						continue;
@@ -1072,7 +1072,7 @@ public class World {
 						toReturn.add(chal);
 						continue;
 					} else continue;
-				toReturn.add(chal); // s'il n'appartient à aucune liste
+				toReturn.add(chal); // s'il n'appartient ï¿½ aucune liste
 					
 			}
 			compteur++;
@@ -1272,35 +1272,35 @@ public class World {
 			Console.print("\nSauvegarde en cours...\n", Color.RED);
 			Config.isSaving = true;
 			SQLManager.commitTransacts();
-			SQLManager.TIMER(false);//Arrête le timer d'enregistrement SQL
-			
-			Thread.sleep(10000);
+			SQLManager.TIMER(false);//Arrï¿½te le timer d'enregistrement SQL
+			//Les Thread Sleep useless .
+			//Thread.sleep(10000);
 			
 			for(Characters perso : getPersos().values())
 			{
 				if(!perso.isOnline())continue;
-				Thread.sleep(10);//0.1 sec. pour 1 objets
+			//	Thread.sleep(10);//0.1 sec. pour 1 objets
 				SQLManager.SAVE_PERSONNAGE(perso,true);//sauvegarde des persos et de leurs items
 			}
 			
-				Thread.sleep(250);
+				//Thread.sleep(250);
 			
 			for(Guild guilde : getGuildes().values())
 			{
-				Thread.sleep(10);//0.1 sec. pour 1 guilde
+			//	Thread.sleep(10);//0.1 sec. pour 1 guilde
 				SQLManager.UPDATE_GUILD(guilde);
 			}
 			
-			Thread.sleep(250);
+		//	Thread.sleep(250);
 			
 			for(Collector perco : getPercepteurs().values())
 			{
 				if(perco.get_inFight()>0)continue;
-				Thread.sleep(10);//0.1 sec. pour 1 percepteur
+			//	Thread.sleep(10);//0.1 sec. pour 1 percepteur
 				SQLManager.UPDATE_PERCO(perco);
 			}
 			
-			Thread.sleep(250);
+		//Thread.sleep(250);
 			for (Prism Prisme : Prismes.values()) {
 				boolean toDelete = true;
 				for (SubArea subarea: getSubAreas().values()){
@@ -1316,29 +1316,29 @@ public class World {
 			{
 				if(house.get_owner_id() > 0)
 				{
-					Thread.sleep(100);//0.1 sec. pour 1 maison
+				//	Thread.sleep(100);//0.1 sec. pour 1 maison
 					SQLManager.UPDATE_HOUSE(house);
 				}
 			}
 			
-			Thread.sleep(250);
+			//Thread.sleep(250);
 			
 			for(Trunk t : getTrunks().values())
 			{
 				if(t.get_owner_id() > 0)
 				{
-					Thread.sleep(10);//0.1 sec. pour 1 coffre
+				//	Thread.sleep(10);//0.1 sec. pour 1 coffre
 					SQLManager.UPDATE_TRUNK(t);
 				}
 			}
 			
-			Thread.sleep(250);
+		//	Thread.sleep(250);
 			
 			for(Maps.MountPark mp : getMountPark().values())
 			{
 				if(mp.get_owner() > 0 || mp.get_owner() == -1)
 				{
-					Thread.sleep(10);//0.1 sec. pour 1 enclo
+				//	Thread.sleep(10);//0.1 sec. pour 1 enclo
 					SQLManager.UPDATE_MOUNTPARK(mp);
 				}
 			}
@@ -1348,7 +1348,7 @@ public class World {
 			for (SubArea subarea : getSubAreas().values()) {
 				SQLManager.UPDATE_SUBAREA(subarea);
 			}
-			Thread.sleep(250);
+			//Thread.sleep(250);
 			
 			ArrayList<HdvEntry> toSave = new ArrayList<HdvEntry>();
 			for(AuctionHouse curHdv : getHdvs().values())
@@ -1357,7 +1357,7 @@ public class World {
 			}
 			SQLManager.SAVE_HDVS_ITEMS(toSave);
 			
-			Thread.sleep(100);
+		//	Thread.sleep(100);
 			
 			Console.print("Sauvegarde effectuee avec succes !\n", Color.RED);
 			
@@ -1392,7 +1392,7 @@ public class World {
 		finally
 		{
 			SQLManager.commitTransacts();
-			SQLManager.TIMER(true); //Redémarre le timer d'enregistrement SQL
+			SQLManager.TIMER(true); //Redï¿½marre le timer d'enregistrement SQL
 			Config.isSaving = false;
 			saveTry = 1;
 		}
@@ -1452,7 +1452,7 @@ public class World {
 			boolean ok = true;
 			for(Couple<Integer,Integer> c : craft)
 			{
-				//si ingredient non présent ou mauvaise quantité
+				//si ingredient non prï¿½sent ou mauvaise quantitï¿½
 				if(ingredients.get(c.first) != c.second)ok = false;
 			}
 			if(ok)return tID;
@@ -1777,7 +1777,7 @@ public class World {
 	public static void addHdvItem(int compteID, int hdvID, HdvEntry toAdd)
 	{
 		if(get_hdvsItems().get(compteID) == null)	//Si le compte n'est pas dans la memoire
-			get_hdvsItems().put(compteID,new HashMap<Integer,ArrayList<HdvEntry>>());	//Ajout du compte clé:compteID et un nouveau map<hdvID,items<>>
+			get_hdvsItems().put(compteID,new HashMap<Integer,ArrayList<HdvEntry>>());	//Ajout du compte clï¿½:compteID et un nouveau map<hdvID,items<>>
 			
 		if(get_hdvsItems().get(compteID).get(hdvID) == null)
 			get_hdvsItems().get(compteID).put(hdvID,new ArrayList<HdvEntry>());
@@ -1912,7 +1912,7 @@ public class World {
 	public static Map<Integer, ArrayList<HdvEntry>> getMyItems(int compteID)
 	{
 		if(get_hdvsItems().get(compteID) == null)//Si le compte n'est pas dans la memoire
-			get_hdvsItems().put(compteID,new HashMap<Integer,ArrayList<HdvEntry>>());//Ajout du compte clé:compteID et un nouveau map<hdvID,items
+			get_hdvsItems().put(compteID,new HashMap<Integer,ArrayList<HdvEntry>>());//Ajout du compte clï¿½:compteID et un nouveau map<hdvID,items
 			
 		return get_hdvsItems().get(compteID);
 	}
@@ -1973,7 +1973,7 @@ public class World {
 			SocketManager.GAME_SEND_MESSAGE_TO_MAP(carte, Femme.get_name()+" est deja marier!", Config.CONFIG_MOTD_COLOR);
 			return;
 		}
-		SocketManager.GAME_SEND_cMK_PACKET_TO_MAP(perso.get_curCarte(), "", -1, "Prêtre", perso.get_name()+" acceptez-vous d'épouser "+getMarried((perso.get_sexe()==1?0:1)).get_name()+" ?");
+		SocketManager.GAME_SEND_cMK_PACKET_TO_MAP(perso.get_curCarte(), "", -1, "Prï¿½tre", perso.get_name()+" acceptez-vous d'ï¿½pouser "+getMarried((perso.get_sexe()==1?0:1)).get_name()+" ?");
 		SocketManager.GAME_SEND_WEDDING(carte, 617, (Homme==perso?Homme.get_GUID():Femme.get_GUID()), (Homme==perso?Femme.get_GUID():Homme.get_GUID()), IdPretre);
 	}
 	
@@ -1981,7 +1981,7 @@ public class World {
 	{
 		if(isOK > 0)
 		{
-			SocketManager.GAME_SEND_cMK_PACKET_TO_MAP(Homme.get_curCarte(), "", -1, "Prêtre", "Je déclare "+Homme.get_name()+" et "+Femme.get_name()+" unis par les liens sacrés du mariage.");
+			SocketManager.GAME_SEND_cMK_PACKET_TO_MAP(Homme.get_curCarte(), "", -1, "Prï¿½tre", "Je dï¿½clare "+Homme.get_name()+" et "+Femme.get_name()+" unis par les liens sacrï¿½s du mariage.");
 			Homme.MarryTo(Femme);
 			Femme.MarryTo(Homme);
 		}else
